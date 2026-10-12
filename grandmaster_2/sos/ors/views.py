@@ -8,6 +8,15 @@ from .ctl.role_ctl import RoleCtl
 from .ctl.role_list_ctl import RoleListCtl
 from .ctl.college_ctl import CollegeCtl
 from .ctl.college_list_ctl import CollegeListCtl
+from .ctl.course_ctl import CourseCtl
+from .ctl.course_list_ctl import CourseListCtl
+from .ctl.subject_ctl import SubjectCtl
+from .ctl.subject_list_ctl import SubjectListCtl
+from .ctl.faculty_ctl import FacultyCtl
+
+
+
+
 
 
 

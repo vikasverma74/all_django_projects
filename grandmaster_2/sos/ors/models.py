@@ -43,32 +43,67 @@ class Role(DropdownItem, models.Model):
     class Meta:
         db_table = "sos_role"
 
-class College(models.Model):
+class College(DropdownItem,models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     city = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
 
+    def get_key(self):
+        return self.id
+
+    def get_value(self):
+        return self.name
+
     class Meta:
         db_table = 'sos_college'
 
 
-class Course(models.Model):
+class Course(DropdownItem,models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     duration = models.CharField(max_length=100)
+
+    def get_key(self):
+        return self.id
+
+    def get_value(self):
+        return self.name
 
     class Meta:
         db_table = 'sos_course'
 
 
-class Subject(models.Model):
+class Subject(DropdownItem,models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
     course_id = models.IntegerField()
     course_name = models.CharField(max_length=50)
 
+    def get_key(self):
+        return self.id
+
+    def get_value(self):
+        return self.name
+
     class Meta:
         db_table = 'sos_subject'
 
+class Faculty(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    password = models.CharField(max_length=20)
+    address = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50)
+    dob = models.DateField(max_length=20)
+    college_id = models.IntegerField()
+    college_name = models.CharField(max_length=50)
+    subject_id = models.IntegerField()
+    subject_name = models.CharField(max_length=50)
+    course_id = models.IntegerField()
+    course_name = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'sos_faculty'

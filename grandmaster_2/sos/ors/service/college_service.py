@@ -34,7 +34,7 @@ class CollegeService:
         obj.delete()
 
     def find_by_name(self, name):
-        print('role service orm find_by_name()')
+        print('college service orm find_by_name()')
         obj = College.objects.filter(name=name)
         return obj
 
