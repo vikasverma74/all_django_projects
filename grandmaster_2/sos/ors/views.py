@@ -13,6 +13,8 @@ from .ctl.course_list_ctl import CourseListCtl
 from .ctl.subject_ctl import SubjectCtl
 from .ctl.subject_list_ctl import SubjectListCtl
 from .ctl.faculty_ctl import FacultyCtl
+from .ctl.faculty_list_ctl import FacultyListCtl
+
 
 
 
