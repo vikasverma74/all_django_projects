@@ -13,7 +13,7 @@ class FacultyService:
             duplicate = duplicate.exclude(id=obj.id)
 
         if duplicate.exists():
-            raise Exception('faculty name already exist')
+            raise Exception('email  already exist')
 
         if obj.id == 0:
             obj.id = None

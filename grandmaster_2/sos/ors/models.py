@@ -107,3 +107,26 @@ class Faculty(models.Model):
 
     class Meta:
         db_table = 'sos_faculty'
+
+class Student(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    dob = models.DateField(max_length=20)
+    mobile_number = models.CharField(max_length=20)
+    email = models.EmailField()
+    college_id = models.IntegerField()
+    college_name = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'sos_student'
+
+class Marksheet(models.Model):
+    roll_number = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    physics = models.IntegerField()
+    chemistry = models.IntegerField()
+    maths = models.IntegerField()
+
+    class Meta:
+        db_table = 'sos_marksheet'
+
