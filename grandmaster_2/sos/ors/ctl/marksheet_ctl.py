@@ -53,11 +53,8 @@ class MarksheetCtl(BaseCtl):
         obj.id = self.form['id']
         obj.roll_number = self.form['roll_number']
         obj.student_id = int(self.form['student_id'])
-
         student = StudentService().get(self.form['student_id'])
-
         obj.student_name = student.first_name + " " + student.last_name
-
         obj.physics = self.form['physics']
         obj.chemistry = self.form['chemistry']
         obj.maths = self.form['maths']
