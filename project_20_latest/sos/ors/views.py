@@ -7,11 +7,11 @@ from .ctl.user_list_ctl import UserListCtl
 from .ctl.role_ctl import RoleCtl
 from .ctl.role_list_ctl import RoleListCtl
 from .ctl.college_ctl import CollegeCtl
+from .ctl.college_list_ctl import CollegeListCtl
 from .ctl.course_ctl import CourseCtl
 from .ctl.course_list_ctl import CourseListCtl
-from .ctl.college_list_ctl import CollegeListCtl
-from .ctl.subject_list_ctl import SubjectListCtl
 from .ctl.subject_ctl import SubjectCtl
+from .ctl.subject_list_ctl import SubjectListCtl
 from .ctl.faculty_ctl import FacultyCtl
 from .ctl.faculty_list_ctl import FacultyListCtl
 from .ctl.student_ctl import StudentCtl
@@ -20,20 +20,22 @@ from .ctl.marksheet_ctl import MarksheetCtl
 from .ctl.marksheet_list_ctl import MarksheetListCtl
 from .ctl.forget_password_ctl import ForgetPasswordCtl
 from .ctl.change_password_ctl import ChangePasswordCtl
-from django.http import HttpResponse
-
 
 def welcome(request):
     return render(request, 'welcome.html')
+
+
 def user_logout(request):
-    request.session['first_name'] = None
+    request.session.flush()
     return redirect('/ors/Login/')
 
 
-def action(request, page,operation = '',id =0):
+def action(request, page, operation='', id=0):
     ctl_name = page + "Ctl()"
     ctl_obj = eval(ctl_name)
-    return ctl_obj.execute(request,params = {'operation':operation,'id':id})
+
+    return ctl_obj.execute(request, params={'operation': operation, 'id': id})
+
 
 
 
