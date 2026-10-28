@@ -18,6 +18,6 @@ class MarksheetDAO(BaseDAO):
         value = params.get("student_name", "")
 
         if DataValidator.is_not_null(value):
-            query = query.filter(student_name__istartswith=value.strip)
+            query = query.filter(student_name__istartswith=value.strip())
 
         return query
