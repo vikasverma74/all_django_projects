@@ -1,20 +1,83 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ORS App</title>
 </head>
-<body>
-{% include 'header.html' %}
-<br><br><br><br><br><br><br><br>
-<div align="center">
-    <h1>Welcome to ORS App</h1>
+<body class="bg-light">
 
-    {% if firstName == None %}
-    <h3> welcome guest </h3>
-    {% else %}
-    <h3> Welcome, {{ firstName }}</h3>
-    {% endif %}
+{% include 'header.html' %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center align-items-center min-vh-75">
+
+        <div class="col-md-10 col-lg-8">
+
+            <div class="card shadow-lg border-0 text-center">
+
+                <!-- Card Header -->
+                <div class="card-header bg-primary text-white py-4">
+                    <h1 class="mb-0">Welcome to ORS App</h1>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body py-5 px-4">
+
+                    <div class="mb-4">
+                        <span class="badge bg-success fs-6 px-3 py-2">
+                            Online Result System
+                        </span>
+                    </div>
+
+                    {% if firstName == None %}
+
+                    <h3 class="text-secondary mb-3">
+                        Welcome Guest!
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        Welcome to our Online Result System.
+                        Please login to access your account.
+                    </p>
+
+                    <a href="/ors/Login/" class="btn btn-primary btn-lg">
+                        Login
+                    </a>
+
+                    {% else %}
+
+                    <h3 class="text-success mb-3">
+                        Welcome, {{ firstName }}!
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        We are glad to have you here.
+                        Explore the ORS application using the navigation menu.
+                    </p>
+
+                    <a href="/ors/ChangePassword/" class="btn btn-outline-primary">
+                        Change Password
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Card Footer -->
+                <div class="card-footer bg-white text-muted py-3">
+                    ORS App | Online Result System
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
 </body>
 </html>

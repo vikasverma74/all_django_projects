@@ -2,76 +2,174 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
 </head>
 <body>
+
 {% include "header.html" %}
-<form method="POST">
-    {% csrf_token %}
-    <div align="center">
-        <h1>User List</h1>
+
+<div class="container-fluid mt-4 mb-4">
+
+    <!-- Page Heading -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">User List</h2>
+        </div>
+
+        <!-- Search -->
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="row justify-content-center align-items-end g-3">
+                    <div class="col-md-5">
+                        <label class="form-label fw-bold">First Name:</label>
+                        <input
+                            type="text"
+                            name="firstName"
+                            class="form-control"
+                            placeholder="Enter first name here"
+                            value="{{ form.name|default_if_none:'' }}">
+                    </div>
+
+                    <div class="col-md-2">
+                        <button
+                            type="submit"
+                            name="operation"
+                            value="search"
+                            class="btn btn-primary w-100">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
     {% if form.list|length > 0 %}
-    <div align="center">
-        <table>
-            <tr>
-                <th>First Name:</th>
-                <td><input type="text" name="firstName" placeholder="enter first name here"
-                           value="{{ form.name|default_if_none:'' }}"></td>
-                <td><input type="submit" name="operation" value="search"></td>
-            </tr>
-        </table>
+
+    <!-- User Table -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">User Records</h5>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered mb-0 align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th class="text-center">S. No.</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Login ID</th>
+                        <th>Password</th>
+                        <th>DOB</th>
+                        <th>Address</th>
+                        <th>Gender</th>
+                        <th>Role</th>
+                        <th class="text-center">Edit | Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for l in form.list %}
+                    <tr>
+                        <td class="text-center">
+                            {{ form.index|add:forloop.counter }}
+                        </td>
+                        <td>{{ l.first_name }}</td>
+                        <td>{{ l.last_name }}</td>
+                        <td>{{ l.login_id }}</td>
+                        <td>{{ l.password }}</td>
+                        <td>{{ l.dob }}</td>
+                        <td>{{ l.address }}</td>
+                        <td>{{ l.gender }}</td>
+                        <td>{{ l.role_name }}</td>
+                        <td class="text-center text-nowrap">
+                            <a href="/ors/User/edit/{{ l.id }}/"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a href="/ors/UserList/delete/{{ l.id }}/"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-    <br>
-    <table border="1%" width="100%">
-        <tr>
-            <th>S. No.</th>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>LoginId</th>
-            <th>Password</th>
-            <th>DOB</th>
-            <th>Address</th>
-            <th>Gender</th>
-            <th>Role</th>
-            <th>Edit | Delete</th>
-        </tr>
-        {% for l in form.list %}
-        <tr>
-            <td align="center">{{ form.index|add:forloop.counter }}</td>
-            <td align="center">{{ l.first_name }}</td>
-            <td align="center">{{ l.last_name }}</td>
-            <td align="center">{{ l.login_id }}</td>
-            <td align="center">{{ l.password }}</td>
-            <td align="center">{{ l.dob }}</td>
-            <td align="center">{{ l.address }}</td>
-            <td align="center">{{ l.gender }}</td>
-            <td align="center">{{ l.role_name }}</td>
-            <td align="center"><a href="/ors/User/edit/{{l.id}}/">edit</a> | <a href="/ors/UserList/delete/{{l.id}}/">delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br>
-    <table style="width: 100%">
-        <tr>
-            <td style="width: 25%">
-                <input type="submit" name="operation" value="previous" {% if not form.has_previous %} disabled {% endif %}>
-            </td>
-            <td align="center" style="width: 50%"><b>Page : {{form.page_no}}</b></td>
-            <td style="width: 25%" align="right">
-                <input type="submit" name="operation" value="next" {% if not form.has_next %} disabled {% endif %}>
-            </td>
-        </tr>
-    </table>
-    <input type="hidden" name="pageNo" value="{{form.page_no}}">
+
+    <!-- Pagination -->
+    <div class="card shadow-sm mt-3 mb-4">
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="hidden" name="pageNo" value="{{ form.page_no }}">
+
+                <div class="row align-items-center">
+                    <div class="col-4 text-start">
+                        <button
+                            type="submit"
+                            name="operation"
+                            value="previous"
+                            class="btn btn-primary"
+                            {% if not form.has_previous %}disabled{% endif %}>
+                            &laquo; Previous
+                        </button>
+                    </div>
+
+                    <div class="col-4 text-center">
+                        <span class="badge bg-primary fs-6">
+                            Page: {{ form.page_no }}
+                        </span>
+                    </div>
+
+                    <div class="col-4 text-end">
+                        <button
+                            type="submit"
+                            name="operation"
+                            value="next"
+                            class="btn btn-primary"
+                            {% if not form.has_next %}disabled{% endif %}>
+                            Next &raquo;
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     {% else %}
-    <div align="center">
-        <font color="red"><h3>No Record Found</h3></font>
-        <input type="submit" name="operation" value="back">
+
+    <!-- No Record Found -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body text-center py-5">
+            <h4 class="text-danger mb-3">No Record Found</h4>
+
+            <form method="POST">
+                {% csrf_token %}
+                <button
+                    type="submit"
+                    name="operation"
+                    value="back"
+                    class="btn btn-secondary">
+                    Back
+                </button>
+            </form>
+        </div>
     </div>
+
     {% endif %}
-</form>
-{% include 'footer.html' %}
+
+</div>
+
+{% include "footer.html" %}
+
 </body>
 </html>
