@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ORS Portal - Welcome</title>
+</head>
+
+<body>
+
+    {% include "header.html" %}
+
+    <div class="container mt-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-10 col-lg-8">
+
+                <div class="card shadow-lg border-0">
+
+                    <div class="card-body text-center p-5">
+
+                        <h1 class="text-primary fw-bold mb-3">
+                            Welcome to ORS Portal
+                        </h1>
+
+                        <h5 class="text-secondary mb-4">
+                            Online Result System
+                        </h5>
+
+                        <p class="text-muted fs-5">
+                            Welcome to our Online Result System.
+                            Manage users, colleges, courses, students
+                            and marksheets easily from one place.
+                        </p>
+
+                        {% if request.session.first_name %}
+
+                            <div class="alert alert-success mt-4">
+                                Welcome back,
+                                <strong>{{ request.session.first_name }}</strong>!
+                            </div>
+
+                        {% else %}
+
+                            <div class="d-flex justify-content-center gap-3 mt-4">
+
+                                <a href="/ors/Login/"
+                                   class="btn btn-primary btn-lg">
+                                    Login
+                                </a>
+
+                                <a href="/ors/Registration/"
+                                   class="btn btn-success btn-lg">
+                                    Register
+                                </a>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
