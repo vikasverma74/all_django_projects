@@ -20,11 +20,13 @@ class EmailBuilder:
         msg += f"New Password: {params['password']}\n"
         return msg
 
+
     @staticmethod
     def forgot_password(params):
         msg = ""
         msg += "Password Recovery\n"
-        msg += f"Hi {params.firstName} {params.lastName}, here are your login details:\n\n"
-        msg += f"Login ID: {params.loginId}\n"
-        msg += f"Password: {params.password}\n"
+        msg += f"Hi {params['firstName']} {params['lastName']}, here are your login details:\n\n"
+        msg += f"Login ID: {params['loginId']}\n"
+        msg += f"Password: {params['password']}\n\n"
+        msg += "Thank you for using ORS."
         return msg

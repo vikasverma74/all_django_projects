@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from ..service.forget_service import ForgetPasswordService
+from ..service.user_service import UserService
 from ..utility.data_validator import DataValidator
 from .base_ctl import BaseCtl
 
@@ -23,19 +23,24 @@ class ForgetPasswordCtl(BaseCtl):
     def display(self, request, params={}):
         return render(request, self.get_template(), {'form': self.form})
 
+
     def submit(self, request, params={}):
+
         try:
-            user = self.get_service().forget_password(self.form['login_id'])
+            self.get_service().forget_password(self.form['login_id'])
+
             self.form['error'] = False
-            self.form['message'] = 'your password is ' + str(user.password)
+            self.form['message'] = 'Password sent to your registered email successfully.'
+
         except Exception as e:
             self.form['message'] = str(e)
             self.form['error'] = True
 
         return render(request, self.get_template(), {'form': self.form})
 
+
     def get_template(self):
         return 'forgetpassword.html'
 
     def get_service(self):
-        return ForgetPasswordService()
+        return UserService()
