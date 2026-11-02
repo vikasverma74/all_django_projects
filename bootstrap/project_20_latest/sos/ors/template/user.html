@@ -15,12 +15,13 @@
 
             <div class="card shadow border-0">
 
+                <!-- Heading -->
                 <div class="card-header bg-primary text-white text-center py-3">
                     <h4 class="mb-0">
                         {% if form.id > 0 %}
-                            Update User
+                        Update User
                         {% else %}
-                            Add User
+                        Add User
                         {% endif %}
                     </h4>
                 </div>
@@ -29,15 +30,15 @@
 
                     <!-- Success / Error Message -->
                     {% if form.message %}
-                        <div class="alert {% if form.error %}alert-danger{% else %}alert-success{% endif %} text-center py-2">
-                            {{ form.message }}
-                        </div>
+                    <div class="alert {% if form.error %}alert-danger{% else %}alert-success{% endif %} text-center py-2">
+                        {{ form.message }}
+                    </div>
                     {% endif %}
 
-                    <form method="POST">
+                    <form method="POST" autocomplete="off">
                         {% csrf_token %}
 
-                        <input type="hidden" name="id" value="{{ form.id }}">
+                        <input type="hidden" name="id" value="{{ form.id|default:0 }}">
 
                         <div class="row g-3">
 
@@ -49,12 +50,12 @@
                                        name="firstName"
                                        class="form-control {% if form.input_error.first_name %}is-invalid{% endif %}"
                                        placeholder="Enter First Name"
-                                       value="{{ form.first_name|default_if_none:'' }}">
+                                       value="{% if form.id > 0 %}{{ form.first_name|default_if_none:'' }}{% endif %}">
 
                                 {% if form.input_error.first_name %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.first_name }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.first_name }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -66,12 +67,12 @@
                                        name="lastName"
                                        class="form-control {% if form.input_error.last_name %}is-invalid{% endif %}"
                                        placeholder="Enter Last Name"
-                                       value="{{ form.last_name|default_if_none:'' }}">
+                                       value="{% if form.id > 0 %}{{ form.last_name|default_if_none:'' }}{% endif %}">
 
                                 {% if form.input_error.last_name %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.last_name }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.last_name }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -81,14 +82,15 @@
 
                                 <input type="text"
                                        name="loginId"
+                                       autocomplete="off"
                                        class="form-control {% if form.input_error.login_id %}is-invalid{% endif %}"
                                        placeholder="Enter Login ID"
-                                       value="{{ form.login_id|default_if_none:'' }}">
+                                       value="{% if form.id > 0 %}{{ form.login_id|default_if_none:'' }}{% endif %}">
 
                                 {% if form.input_error.login_id %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.login_id }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.login_id }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -98,14 +100,15 @@
 
                                 <input type="password"
                                        name="password"
+                                       autocomplete="new-password"
                                        class="form-control {% if form.input_error.password %}is-invalid{% endif %}"
                                        placeholder="Enter Password"
-                                       value="{{ form.password|default_if_none:'' }}">
+                                       value="{% if form.id > 0 %}{{ form.password|default_if_none:'' }}{% endif %}">
 
                                 {% if form.input_error.password %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.password }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.password }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -116,12 +119,12 @@
                                 <input type="date"
                                        name="dob"
                                        class="form-control {% if form.input_error.dob %}is-invalid{% endif %}"
-                                       value="{{ form.dob|default_if_none:'' }}">
+                                       value="{% if form.id > 0 %}{{ form.dob|default_if_none:'' }}{% endif %}">
 
                                 {% if form.input_error.dob %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.dob }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.dob }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -133,12 +136,12 @@
                                        name="address"
                                        class="form-control {% if form.input_error.address %}is-invalid{% endif %}"
                                        placeholder="Enter Address"
-                                       value="{{ form.address|default_if_none:'' }}">
+                                       value="{% if form.id > 0 %}{{ form.address|default_if_none:'' }}{% endif %}">
 
                                 {% if form.input_error.address %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.address }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.address }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -149,9 +152,9 @@
                                 {{ preload_data.gender_select|safe }}
 
                                 {% if form.input_error.gender %}
-                                    <div class="text-danger small mt-1">
-                                        {{ form.input_error.gender }}
-                                    </div>
+                                <div class="text-danger small mt-1">
+                                    {{ form.input_error.gender }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -162,9 +165,9 @@
                                 {{ preload_data.role_select|safe }}
 
                                 {% if form.input_error.role_id %}
-                                    <div class="text-danger small mt-1">
-                                        {{ form.input_error.role_id }}
-                                    </div>
+                                <div class="text-danger small mt-1">
+                                    {{ form.input_error.role_id }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -173,31 +176,31 @@
 
                                 {% if form.id > 0 %}
 
-                                    <button type="submit"
-                                            name="operation"
-                                            value="update"
-                                            class="btn btn-primary flex-fill">
-                                        Update User
-                                    </button>
+                                <button type="submit"
+                                        name="operation"
+                                        value="update"
+                                        class="btn btn-primary flex-fill">
+                                    Update User
+                                </button>
 
-                                    <a href="/ors/UserList/"
-                                       class="btn btn-outline-secondary flex-fill">
-                                        User List
-                                    </a>
+                                <a href="/ors/UserList/"
+                                   class="btn btn-outline-secondary flex-fill">
+                                    User List
+                                </a>
 
                                 {% else %}
 
-                                    <button type="submit"
-                                            name="operation"
-                                            value="save"
-                                            class="btn btn-primary flex-fill">
-                                        Save User
-                                    </button>
+                                <button type="submit"
+                                        name="operation"
+                                        value="save"
+                                        class="btn btn-primary flex-fill">
+                                    Save User
+                                </button>
 
-                                    <a href="/ors/User/"
-                                       class="btn btn-outline-secondary flex-fill">
-                                        Reset
-                                    </a>
+                                <a href="/ors/User/"
+                                   class="btn btn-outline-secondary flex-fill">
+                                    Reset
+                                </a>
 
                                 {% endif %}
 
@@ -215,3 +218,4 @@
 
 </body>
 </html>
+

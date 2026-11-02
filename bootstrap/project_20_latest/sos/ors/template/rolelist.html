@@ -13,6 +13,7 @@
 
     <div class="card shadow border-0">
 
+        <!-- Heading -->
         <div class="card-header bg-primary text-white text-center py-3">
             <h4 class="mb-0">Role List</h4>
         </div>
@@ -26,7 +27,9 @@
                 <div class="row g-2 align-items-end mb-4">
 
                     <div class="col-12 col-md-5">
-                        <label class="form-label fw-semibold">Role Name</label>
+                        <label class="form-label fw-semibold">
+                            Role Name
+                        </label>
 
                         <input type="text"
                                name="name"
@@ -44,12 +47,14 @@
                         </button>
                     </div>
 
+                    <!--
                     <div class="col-12 col-md-auto">
-                        <a href="/ors/Role/"
-                           class="btn btn-outline-success w-100">
-                            Add Role
+                        <a href="/ors/RoleList/"
+                           class="btn btn-outline-secondary w-100">
+                            Reset
                         </a>
                     </div>
+                    -->
 
                 </div>
             </form>
@@ -71,8 +76,10 @@
                         </thead>
 
                         <tbody>
+
                             {% for l in form.list %}
                             <tr>
+
                                 <td>
                                     {{ form.index|add:forloop.counter }}
                                 </td>
@@ -81,7 +88,8 @@
 
                                 <td>{{ l.description }}</td>
 
-                                <td>
+                                <td class="text-nowrap">
+
                                     <a href="/ors/Role/edit/{{ l.id }}/"
                                        class="btn btn-sm btn-outline-primary">
                                         Edit
@@ -92,9 +100,12 @@
                                        onclick="return confirm('Are you sure you want to delete this role?');">
                                         Delete
                                     </a>
+
                                 </td>
+
                             </tr>
                             {% endfor %}
+
                         </tbody>
 
                     </table>
@@ -140,13 +151,18 @@
 
             {% else %}
 
+                <!-- No Record Found -->
                 <div class="text-center py-5">
-                    <h5 class="text-danger mb-3">No Record Found</h5>
 
-                    <a href="/ors/Role/"
+                    <h5 class="text-danger mb-3">
+                        No Record Found
+                    </h5>
+
+                    <a href="/ors/RoleList/"
                        class="btn btn-primary">
-                        Add New Role
+                        back
                     </a>
+
                 </div>
 
             {% endif %}
@@ -158,3 +174,5 @@
 
 </body>
 </html>
+
+
