@@ -49,8 +49,8 @@
                                 <input type="text"
                                        name="firstName"
                                        class="form-control {% if form.input_error.first_name %}is-invalid{% endif %}"
-                                       placeholder="Enter First Name"
-                                       value="{% if form.id > 0 %}{{ form.first_name|default_if_none:'' }}{% endif %}">
+                                       placeholder="Enter First name"
+                                       value="{{ form.first_name|default_if_none:'' }}">
 
                                 {% if form.input_error.first_name %}
                                 <div class="invalid-feedback">
@@ -66,8 +66,8 @@
                                 <input type="text"
                                        name="lastName"
                                        class="form-control {% if form.input_error.last_name %}is-invalid{% endif %}"
-                                       placeholder="Enter Last Name"
-                                       value="{% if form.id > 0 %}{{ form.last_name|default_if_none:'' }}{% endif %}">
+                                       placeholder="Enter Last name"
+                                       value="{{ form.last_name|default_if_none:'' }}">
 
                                 {% if form.input_error.last_name %}
                                 <div class="invalid-feedback">
@@ -85,7 +85,7 @@
                                        autocomplete="off"
                                        class="form-control {% if form.input_error.login_id %}is-invalid{% endif %}"
                                        placeholder="Enter Login ID"
-                                       value="{% if form.id > 0 %}{{ form.login_id|default_if_none:'' }}{% endif %}">
+                                       value="{{ form.login_id|default_if_none:'' }}">
 
                                 {% if form.input_error.login_id %}
                                 <div class="invalid-feedback">
@@ -103,7 +103,7 @@
                                        autocomplete="new-password"
                                        class="form-control {% if form.input_error.password %}is-invalid{% endif %}"
                                        placeholder="Enter Password"
-                                       value="{% if form.id > 0 %}{{ form.password|default_if_none:'' }}{% endif %}">
+                                       value="{{ form.password|default_if_none:'' }}">
 
                                 {% if form.input_error.password %}
                                 <div class="invalid-feedback">
@@ -119,7 +119,7 @@
                                 <input type="date"
                                        name="dob"
                                        class="form-control {% if form.input_error.dob %}is-invalid{% endif %}"
-                                       value="{% if form.id > 0 %}{{ form.dob|default_if_none:'' }}{% endif %}">
+                                       value="{{ form.dob|default_if_none:'' }}">
 
                                 {% if form.input_error.dob %}
                                 <div class="invalid-feedback">
@@ -136,7 +136,7 @@
                                        name="address"
                                        class="form-control {% if form.input_error.address %}is-invalid{% endif %}"
                                        placeholder="Enter Address"
-                                       value="{% if form.id > 0 %}{{ form.address|default_if_none:'' }}{% endif %}">
+                                       value="{{ form.address|default_if_none:'' }}">
 
                                 {% if form.input_error.address %}
                                 <div class="invalid-feedback">
