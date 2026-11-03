@@ -18,9 +18,9 @@
                 <div class="card-header bg-primary text-white text-center py-3">
                     <h4 class="mb-0">
                         {% if form.id > 0 %}
-                            Update Faculty
+                        Update Faculty
                         {% else %}
-                            Add Faculty
+                        Add Faculty
                         {% endif %}
                     </h4>
                 </div>
@@ -34,9 +34,9 @@
 
                         <!-- Success / Error Message -->
                         {% if form.message %}
-                            <div class="alert {% if form.error %}alert-danger{% else %}alert-success{% endif %} text-center py-2">
-                                {{ form.message }}
-                            </div>
+                        <div class="alert {% if form.error %}alert-danger{% else %}alert-success{% endif %} text-center py-2">
+                            {{ form.message }}
+                        </div>
                         {% endif %}
 
                         <div class="row g-3">
@@ -52,9 +52,9 @@
                                        value="{{ form.first_name|default_if_none:'' }}">
 
                                 {% if form.input_error.first_name %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.first_name }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.first_name }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -69,9 +69,9 @@
                                        value="{{ form.last_name|default_if_none:'' }}">
 
                                 {% if form.input_error.last_name %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.last_name }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.last_name }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -86,9 +86,27 @@
                                        value="{{ form.email|default_if_none:'' }}">
 
                                 {% if form.input_error.email %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.email }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.email }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Password -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Password</label>
+
+                                <input type="password"
+                                       name="password"
+                                       autocomplete="new-password"
+                                       class="form-control {% if form.input_error.password %}is-invalid{% endif %}"
+                                       placeholder="Enter Password"
+                                       value="{{ form.password|default_if_none:'' }}">
+
+                                {% if form.input_error.password %}
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.password }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -103,9 +121,9 @@
                                        value="{{ form.address|default_if_none:'' }}">
 
                                 {% if form.input_error.address %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.address }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.address }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -116,9 +134,9 @@
                                 {{ preload_data.gender_select|safe }}
 
                                 {% if form.input_error.gender %}
-                                    <div class="text-danger small mt-1">
-                                        {{ form.input_error.gender }}
-                                    </div>
+                                <div class="text-danger small mt-1">
+                                    {{ form.input_error.gender }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -132,9 +150,9 @@
                                        value="{{ form.dob|default_if_none:'' }}">
 
                                 {% if form.input_error.dob %}
-                                    <div class="invalid-feedback">
-                                        {{ form.input_error.dob }}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{ form.input_error.dob }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -145,9 +163,9 @@
                                 {{ preload_data.college_select|safe }}
 
                                 {% if form.input_error.college_id %}
-                                    <div class="text-danger small mt-1">
-                                        {{ form.input_error.college_id }}
-                                    </div>
+                                <div class="text-danger small mt-1">
+                                    {{ form.input_error.college_id }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -158,9 +176,9 @@
                                 {{ preload_data.subject_select|safe }}
 
                                 {% if form.input_error.subject_id %}
-                                    <div class="text-danger small mt-1">
-                                        {{ form.input_error.subject_id }}
-                                    </div>
+                                <div class="text-danger small mt-1">
+                                    {{ form.input_error.subject_id }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -171,9 +189,9 @@
                                 {{ preload_data.course_select|safe }}
 
                                 {% if form.input_error.course_id %}
-                                    <div class="text-danger small mt-1">
-                                        {{ form.input_error.course_id }}
-                                    </div>
+                                <div class="text-danger small mt-1">
+                                    {{ form.input_error.course_id }}
+                                </div>
                                 {% endif %}
                             </div>
 
@@ -182,31 +200,31 @@
 
                                 {% if form.id > 0 %}
 
-                                    <button type="submit"
-                                            name="operation"
-                                            value="update"
-                                            class="btn btn-primary flex-fill">
-                                        Update
-                                    </button>
+                                <button type="submit"
+                                        name="operation"
+                                        value="update"
+                                        class="btn btn-primary flex-fill">
+                                    Update
+                                </button>
 
-                                    <a href="/ors/FacultyList/"
-                                       class="btn btn-outline-secondary flex-fill">
-                                        Faculty List
-                                    </a>
+                                <a href="/ors/FacultyList/"
+                                   class="btn btn-outline-secondary flex-fill">
+                                    Faculty List
+                                </a>
 
                                 {% else %}
 
-                                    <button type="submit"
-                                            name="operation"
-                                            value="save"
-                                            class="btn btn-primary flex-fill">
-                                        Save
-                                    </button>
+                                <button type="submit"
+                                        name="operation"
+                                        value="save"
+                                        class="btn btn-primary flex-fill">
+                                    Save
+                                </button>
 
-                                    <a href="/ors/Faculty/"
-                                       class="btn btn-outline-secondary flex-fill">
-                                        Reset
-                                    </a>
+                                <a href="/ors/Faculty/"
+                                   class="btn btn-outline-secondary flex-fill">
+                                    Reset
+                                </a>
 
                                 {% endif %}
 
@@ -222,6 +240,5 @@
     </div>
 </div>
 {% include 'footer.html' %}
-
 </body>
 </html>
